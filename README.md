@@ -4,7 +4,7 @@
 
 ## Installation Guide
 
-1. [Download this repository](https://github.com/Rizulix/Classic-Weapons/archive/refs/heads/main.zip) and extract its content inside `Steam\steamapps\common\Sven Co-op\svencoop_addon\`.
+1. [Download this repository](https://github.com/Rizulix/Opposing-Force-Penguin/archive/refs/heads/main.zip) and extract its content inside `Steam\steamapps\common\Sven Co-op\svencoop_addon\`.
 
 2. Open your map_script: *`my_map_script.as`*. (this name is only for reference)
 
