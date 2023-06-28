@@ -88,6 +88,8 @@ class weapon_penguin : ScriptBasePlayerWeaponEntity
       message.WriteLong(g_ItemRegistry.GetIdForName(pev.classname));
     message.End();
 
+    @m_pPlayer = pPlayer;
+
     return true;
   }
 
@@ -107,25 +109,26 @@ class weapon_penguin : ScriptBasePlayerWeaponEntity
     return bResult;
   }
 
-  void DestroyThink()
-  {
-    SetThink(null);
-    self.DestroyItem();
-  }
-
   void Holster(int skiplocal = 0)
   {
-    if (m_pPlayer.m_rgAmmo(self.m_iPrimaryAmmoType) <= 0 && !m_fDropped)
-    {
-      m_pPlayer.pev.weapons &= ~(1 << self.m_iId);
-      SetThink(ThinkFunction(this.DestroyThink));
-      pev.nextthink = g_Engine.time + 0.1;
-      return;
-    }
-
     g_SoundSystem.EmitSound(m_pPlayer.edict(), CHAN_WEAPON, 'common/null.wav', VOL_NORM, ATTN_NORM);
 
     BaseClass.Holster(skiplocal);
+  }
+  
+  CBasePlayerItem@ DropItem()
+  {
+      return self;
+  }
+
+  bool CanHaveDuplicates()
+  {
+      return true;
+  }
+
+  bool CanDeploy()
+  {
+      return m_pPlayer.m_rgAmmo( self.m_iPrimaryAmmoType ) > 0;
   }
 
   void PrimaryAttack()
